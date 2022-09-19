@@ -1,11 +1,19 @@
-const express = require('express'),
-  app = express(),
-  bodyParser = require('body-parser');
+const express = require('express');
+app = express();
+bodyParser = require('body-parser');
 var port = 3000;
 
+// Configurar variables de entorno (.env):
+let local_test = true;
+var dotenv = require('dotenv');
+if (local_test){
+    dotenv_path = './env/.env';
+    dotenv.config({path: dotenv_path});
+}
+
+// CORS:
 var cors = require('cors');
 app.use(cors());
-
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
 
@@ -21,17 +29,39 @@ app.use((req, res, next) => {
     });
 });
 
-const mysql = require('mysql');
+const sql = require('mssql')
+/* 
 // connection configurations
 const mc = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
   database: 'copaDataSet'
-});
-
+}); 
 // connect to database
 mc.connect();
+*/
+
+const config = {
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    server: process.env.DB_SERVER,
+    port: process.env.DB_PORT,
+    database: process.env.DB_DATABASE,
+    connectionTimeout: 3000,
+    parseJSON: true,
+    options: {
+      encrypt: true,
+      enableArithAbort: true
+    },
+    pool: {
+      min: 0,
+      idleTimeoutMillis: 3000
+    }
+};
+
+const pool = new sql.ConnectionPool(config);
+const connection = pool.connect();
 
 app.listen(port);
 
