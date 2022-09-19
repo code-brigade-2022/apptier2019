@@ -42,6 +42,11 @@ const mc = mysql.createConnection({
 mc.connect();
 */
 
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+  })
+  
+
 const config = {
     user: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
