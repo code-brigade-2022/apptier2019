@@ -3,6 +3,14 @@ module.exports = function(app) {
   var Airports = require('../controller/appController.js');
   var Distance = require('../controller/appController.js');
 
+  app.get('/meh', (req, res) => {
+    res.send('Hello World!')
+  });
+
+  app.get('/', (req, res) => {
+    res.send('Hello World!')
+  });
+
   app.get('/airports', function(req, res) {
     -Airports.list_all_Airports(req, res);
   });

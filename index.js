@@ -41,10 +41,6 @@ const mc = mysql.createConnection({
 // connect to database
 mc.connect();
 */
-
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-  })
   
 
 const config = {
