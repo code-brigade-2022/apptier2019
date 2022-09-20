@@ -1,26 +1,24 @@
-var sql;
-var connection;
+var sql = require("mssql");
+
 var user = process.env.DB_USERNAME || "root";
 var password = process.env.DB_PASSWORD || "";
 var database = process.env.DB_DATABASE || "copadataset";
 var server = process.env.DB_SERVER || "localhost";
-var port = process.env.DB_PORT || "3306";
+var port = process.env.DB_PORT || 3306;
 
-// Con Mysql
-var sql = require('mysql');
-var connection = sql.createConnection({
-    host: server,
-    user: user,
-    password: password,
-    database: database
-});
-connection.connect(function(err) {
-    if (err) throw err;
-});
+var dbConfig = {
+    server: server,
+    database: database,
+    user: user, 
+    password: password, 
+    port: port,
+    options: {
+          encrypt: true
+      }
+   };
 
-// Con Mssql
+var conn = new sql.ConnectionPool(dbConfig);
+conn.connect();
+var req = new sql.Request(conn);
 
-
-
-
-module.exports = connection;
+module.exports = req;
