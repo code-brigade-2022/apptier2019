@@ -3,7 +3,7 @@
 var sql;
 var connection;
 
-if (process.env.NODE_ENV == "development"){
+/* if (process.env.NODE_ENV == "development"){
 
     sql = require('mysql');
     //grant all privileges on copaDataSet.* to admin@'%' identified by 'copadb2020';
@@ -41,5 +41,20 @@ if (process.env.NODE_ENV == "development"){
     const pool = new sql.ConnectionPool(config);
     connection = pool.connect(); 
 }
+ */
+
+sql = require('mysql');
+//grant all privileges on copaDataSet.* to admin@'%' identified by 'copadb2020';
+//local mysql db connection
+var connection = sql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE
+});
+
+connection.connect(function(err) {
+    if (err) throw err;
+});
 
 module.exports = connection;
