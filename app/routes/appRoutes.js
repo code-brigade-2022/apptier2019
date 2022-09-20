@@ -1,6 +1,4 @@
 module.exports = function(app) {
-  var Airports = require('../controller/appController.js');
-  var Distance = require('../controller/appController.js');
 
   app.get('/envs', (req, res) => {
     res.json({
