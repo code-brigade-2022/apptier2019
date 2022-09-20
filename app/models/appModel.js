@@ -1,4 +1,4 @@
-var sql = require('./db.js');
+//var sql = require('./db.js');
 
 //Airport object constructor
 var Airport = function(Airport) {
@@ -14,24 +14,11 @@ var Distance = function(Distance) {
 };
 
 Airport.getAllAirport = function(result) {
-  sql.query('Select * from aeropuertos', function(err, res) {
-    if (err) {
-      result(null, err);
-    } else {
-      result(null, {airports :res});
-    }
-  });
+    result(null, {airports: 1});
 };
 
 Distance.getAllDistance = function(req, result) {
-  var query = 'Select * from distancias';
-  sql.query(query, function(err, res) {
-    if (err) {
-      result(null, err);
-    } else {
-      result(null, {distance: {distanceList: res}});
-    }
-  });
+    result(null, {distance: {distanceList: 2}});
 };
 
 module.exports.Airport = Airport;
