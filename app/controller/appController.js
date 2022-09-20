@@ -2,15 +2,9 @@
 //var Distance = require('../models/appModel.js').Distance;
 
 exports.list_all_Airports = function(req, res) {
-  Airport.getAllAirport(function(err, Airport) {
-    if (err) res.send(err);
     res.json({"Hola": 1});
-  });
 };
 
 exports.list_all_Distances = function(req, res) {
-  Distance.getAllDistance(req, function(err, Distance) {
-    if (err) res.send(err);
     res.json({"Hola": 2});
-  });
 };
