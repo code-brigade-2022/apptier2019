@@ -1,17 +1,16 @@
-'user strict';
-
 var sql;
 var connection;
-var host = process.env.DB_HOST || "localhost";
 var user = process.env.DB_USERNAME || "root";
 var password = process.env.DB_PASSWORD || "";
 var database = process.env.DB_DATABASE || "copadataset";
+var server = process.env.DB_SERVER || "localhost";
+var port = process.env.DB_PORT || "3306";
 
-sql = require('mysql');
+var sql = require('mysql');
 //grant all privileges on copaDataSet.* to admin@'%' identified by 'copadb2020';
 //local mysql db connection
 var connection = sql.createConnection({
-    host: host,
+    host: server,
     user: user,
     password: password,
     database: database

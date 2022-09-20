@@ -1,4 +1,3 @@
-'user strict';
 var sql = require('./db.js');
 
 //Airport object constructor
@@ -50,5 +49,6 @@ Distance.getAllDistance = function(req, result) {
     }
   });
 };
+
 module.exports.Airport = Airport;
 module.exports.Distance = Distance;
