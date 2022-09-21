@@ -1,27 +1,5 @@
-//var sql = require('./db.js');
-
-// DB...
-var sql = require("mssql");
-var user = process.env.DB_USERNAME || "root";
-var password = process.env.DB_PASSWORD || "";
-var database = process.env.DB_DATABASE || "copadataset";
-var server = process.env.DB_SERVER || "localhost";
-var port = process.env.DB_PORT || 3306;
-
-var dbConfig = {
-    server: server,
-    database: database,
-    user: user, 
-    password: password, 
-    port: port,
-    options: {
-          encrypt: true
-      }
-   };
-
-var conn = new sql.ConnectionPool(dbConfig);
-
-// Modelos:
+'user strict';
+var sql = require('./db.js');
 
 //Airport object constructor
 var Airport = function(Airport) {
@@ -37,20 +15,40 @@ var Distance = function(Distance) {
 };
 
 Airport.getAllAirport = function(result) {
-    result(null, {airports: 2});
+  sql.query('Select * from aeropuertos', function(err, res) {
+    if (err) {
+      console.log('error: ', err);
+      result(null, err);
+    } else {
+      console.log('Airports : ', res);
+
+      result(null, {airports :res});
+    }
+  });
 };
 
-Distance.getAllDistance = function(result) {
-    conn.connect().then(function () {
-        var sql_req = new sql.Request(conn);
-        var consulta = 'Select * from distancias';
-        sql_req.query(consulta)
-        .then(function(res) {
-            result(null, {distance: {distanceList: res}});
-            conn.close();
-        })
-    })
-};
+Distance.getAllDistance = function(req, result) {
+  var query = 'Select * from distancias';
+  if (req.query.from && req.query.to) {
+    query =
+      query +
+      " where ORIG_CD = '" +
+      req.query.from +
+      "' AND DEST_CD = '" +
+      req.query.to +
+      "'";
+  }
+  console.log('query:', query);
+  sql.query(query, function(err, res) {
+    if (err) {
+      console.log('error: ', err);
+      result(null, err);
+    } else {
+      console.log('Distance : ', res);
 
+      result(null, {distance: {distanceList: res}});
+    }
+  });
+};
 module.exports.Airport = Airport;
 module.exports.Distance = Distance;

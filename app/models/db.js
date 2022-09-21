@@ -1,24 +1,18 @@
-var sql = require("mssql");
+'user strict';
 
-var user = process.env.DB_USERNAME || "root";
-var password = process.env.DB_PASSWORD || "";
-var database = process.env.DB_DATABASE || "copadataset";
-var server = process.env.DB_SERVER || "localhost";
-var port = process.env.DB_PORT || 3306;
+var mysql = require('mysql');
 
-var dbConfig = {
-    server: server,
-    database: database,
-    user: user, 
-    password: password, 
-    port: port,
-    options: {
-          encrypt: true
-      }
-   };
+//grant all privileges on copaDataSet.* to admin@'%' identified by 'copadb2020';
+//local mysql db connection
+var connection = mysql.createConnection({
+  host: '',
+  user: 'root',
+  password: '',
+  database: 'copadataset'
+});
 
-var conn = new sql.ConnectionPool(dbConfig);
-conn.connect();
-var req = new sql.Request(conn);
+connection.connect(function(err) {
+  if (err) throw err;
+});
 
-module.exports = req;
+module.exports = connection;
