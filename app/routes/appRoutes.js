@@ -1,10 +1,13 @@
 'use strict';
+
+const path = require('path');
+
 module.exports = function(app) {
   var Airports = require('../controller/appController.js');
   var Distance = require('../controller/appController.js');
 
   app.get('/', function(req, res) {
-    res.send("<h1>Hola</h1>");
+    res.sendFile(path.join(__dirname, '../views/home.html'));
   });
 
   app.get('/airports', function(req, res) {
