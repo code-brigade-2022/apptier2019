@@ -7,7 +7,7 @@ module.exports = function(app) {
   var Distance = require('../controller/appController.js');
 
   app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, '../views/home.html'));
+    res.json({"Hola": "Adiós"})
   });
 
   app.get('/airports', function(req, res) {
@@ -19,9 +19,4 @@ module.exports = function(app) {
     console.log('to:', req.query.to);
     Distance.list_all_Distances(req, res);
   });
-
-  //app.route('/airports')
-  // .get(Airports.list_all_Airports, );
-  //app.route('/distances')
-  //  .get(Airports.list_all_distances, );
 };

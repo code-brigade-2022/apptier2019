@@ -17,11 +17,8 @@ var Distance = function(Distance) {
 Airport.getAllAirport = function(result) {
   sql.query('Select * from aeropuertos', function(err, res) {
     if (err) {
-      console.log('error: ', err);
       result(null, err);
     } else {
-      console.log('Airports : ', res);
-
       result(null, {airports :res});
     }
   });
@@ -41,11 +38,8 @@ Distance.getAllDistance = function(req, result) {
   console.log('query:', query);
   sql.query(query, function(err, res) {
     if (err) {
-      console.log('error: ', err);
       result(null, err);
     } else {
-      console.log('Distance : ', res);
-
       result(null, {distance: {distanceList: res}});
     }
   });
