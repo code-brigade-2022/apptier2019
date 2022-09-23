@@ -7,7 +7,7 @@ module.exports = function(app) {
   var Distance = require('../controller/appController.js');
 
   app.get('/', function(req, res) {
-    res.json({"Hola": "Adiós"});
+    res.json({"Hola": "Adiós", 1:2});
   });
 
   app.get('/airports', function(req, res) {
