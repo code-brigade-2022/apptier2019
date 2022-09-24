@@ -3,16 +3,16 @@
 var Airport = require('../models/appModel.js').Airport;
 var Distance = require('../models/appModel.js').Distance;
 
-exports.list_all_Airports = function(req, res) {
-  Airport.getAllAirport(function(err, Airport) {
-    if (err) res.send(err);
-    res.json(Airport);
-  });
+exports.list_all_airports = function (req, res) {
+    Airport.getAllAirports(function (err, Airport) {
+        if (err) res.send(err);
+        res.json(Airport);
+    });
 };
 
-exports.list_all_Distances = function(req, res) {
-  Distance.getAllDistance(req, function(err, Distance) {
-    if (err) res.send(err);
-    res.json(Distance);
-  });
+exports.get_distance = function (req, res) {
+    Distance.getDistance(req, function (err, Distance) {
+        if (err) res.send(err);
+        res.json(Distance);
+    });
 };
