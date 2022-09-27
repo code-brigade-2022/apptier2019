@@ -6,9 +6,9 @@ var mysql = require('mysql');
 //local mysql db connection
 var connection = mysql.createConnection({
   host: '',
-  user: 'root',
-  password: '',
-  database: 'copadataset'
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 });
 
 connection.connect(function(err) {
