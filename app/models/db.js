@@ -1,18 +1,14 @@
-'user strict';
+const CosmosClient = require('@azure/cosmos').CosmosClient
 
-var mysql = require('mysql');
+const endpoint = process.env.DB_COSMOS_ENDPOINT
+const key = process.env.DB_COSMOS_KEY
 
-//grant all privileges on copaDataSet.* to admin@'%' identified by 'copadb2020';
-//local mysql db connection
-var connection = mysql.createConnection({
-  host: '',
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
-});
+const options = {
+      endpoint: endpoint,
+      key: key,
+      userAgentSuffix: 'Copa-CosmosDB'
+    };
 
-connection.connect(function(err) {
-  if (err) throw err;
-});
+const client = new CosmosClient(options)
 
-module.exports = connection;
+module.exports = client;
