@@ -10,6 +10,7 @@
     "@azure/identity": "^3.0.0",
     "@azure/keyvault-secrets": "^4.6.0",
     "applicationinsights": "^2.3.5",
+    "applicationinsights-native-metrics": "^0.0.7",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.2",
