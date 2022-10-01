@@ -27,7 +27,7 @@ getSecret(secret1).then(db_user => {
 
         getSecret(secret3).then(db_name => {
 
-            getSecret(secret3).then(app_insights_conn => {
+            getSecret(secret4).then(app_insights_conn => {
 
                 env_vars = `DB_COSMOS_KEY = ${db_user} \n DB_COSMOS_ENDPOINT = ${db_password} \n DB_NAME = ${db_name} \n APPLICATIONINSIGHTS_CONNECTION_STRING = ${app_insights_conn}` 
         
